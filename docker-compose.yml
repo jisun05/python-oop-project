@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./app.db
+      - JWT_ALG=HS256
+      - JWT_EXPIRE_MIN=60
+      - JWT_ACTIVE_KID=${JWT_ACTIVE_KID}
+      - JWT_KEYS=${JWT_KEYS}
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  test:
+    build: .
+    environment:
+      - DATABASE_URL=sqlite:///./test.db
+      - JWT_ALG=HS256
+      - JWT_EXPIRE_MIN=60
+      - JWT_ACTIVE_KID=${JWT_ACTIVE_KID}
+      - JWT_KEYS=${JWT_KEYS}
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: pytest -q
