@@ -47,33 +47,29 @@ Pytest, httpx, pytest-cov
 
 ## 🐳 Docker
 
-1. Build the image
- docker build -t python-oop-project .
-
-2. Run the container
- docker run -d --name python-oop-project -p 8000:8000 python-oop-project
-
- Application: http://localhost:8000
- API docs (Swagger): http://localhost:8000/docs
-
-3. Development mode (with hot reload)
- Mount your local source code into the container and enable --reload so changes are picked up instantly:
-
- docker run -d --name python-oop-project -p 8000:8000 `
-   -v ${PWD}:/app `
-   python-oop-project uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-
-4. Using Docker Compose
- If you prefer Compose (recommended for multi-service setups):
-
- docker compose up --build
-
-5. Clean up
- Stop and remove the container and image:
-
- docker stop python-oop-project && docker rm python-oop-project
- docker rmi python-oop-project
-
+1. **Build the image**
+```bash
+docker build -t python-oop-project .
+```
+2. **Run the container**
+```bash
+docker run -d --name python-oop-project -p 8000:8000 python-oop-project
+```
+```bash
+Application: http://localhost:8000
+API docs (Swagger): http://localhost:8000/docs
+```
+3. **Using Docker Compose**
+If you prefer Compose (recommended for multi-service setups):
+```bash
+docker compose up --build
+```
+4. **Clean up**
+Stop and remove the container and image:
+```bash
+docker stop python-oop-project && docker rm python-oop-project
+docker rmi python-oop-project
+```
 
 
 
